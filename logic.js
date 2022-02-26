@@ -1,35 +1,50 @@
 // Assignment code here
-var specialCharacters = true;
-var lowerCase = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
-var upperCase = 
+var numeric = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+var lowerCase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n','o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var upperCase = ['A', 'B', 'C','D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+var specialCharacters = ['!', '"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '|', '~', '^', '_'];
 
-
+var userChoices = {
+specialCharacters, 
+lowerCase,
+upperCase,
+numeric,
+passwordLength: false
+} 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+function promptPasswordLength () {
+var passwordLength = prompt("Choose a password length between 8 to 128 characters.");
+if (passwordLength  < 8) {
+  alert("Please type a number between 8 and 128.")
+  promptPasswordLength();
+}
+
+
+if (passwordLength > 128) {
+  alert("Please type a number between 8 and 128.");
+  promptPasswordLength();
+} 
+
+
+if (passwordLength === ".") {
+
+  alert("You must type a character length between 8 to 128 characters.");
+  promptPasswordLength();
+} 
+return passwordLength;
+
+}
+
 function generatePassword() {
-  var specialCharacters = confirm ('Would you like to add special characters?');
-  var lowerCase = confirm("Would you like to add lowercase letters?");
-  var upperCase = confirm("Would you like to add uppercase letters?");
-  var numeric = confirm("Would you like to add numeric characters?");
-  var passwordLength = prompt("Choose a password length between 8 to 128 characters.");
-  
-  if (passwordLength < 8) {
-    alert("Please type a number between 8 and 128.")
-  }
-  prompt("Choose a password length between 8 to 128 characters.");
-  
-  
-  if (passwordLength > 128) {
-    alert("Please type a number between 8 and 128.")
-  }
-  prompt("Choose a password length between 8 to 128 characters.");
+  userChoices.specialCharacters = confirm ('Would you like to add special characters?');
+  userChoices.lowerCase = confirm ("Would you like to add lowercase letters?");
+  userChoices.upperCase = confirm("Would you like to add uppercase letters?");
+  userChoices.numeric = confirm("Would you like to add numeric characters?");
+  userChoices.passwordLength = promptPasswordLength();
 
-  if (passwordLength === ".") {
-    
-    alert("You must type a character length between 8 to 128 characters.")
-  }
-
+  
 }
 
 
